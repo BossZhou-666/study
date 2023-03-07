@@ -95,3 +95,12 @@ sshpass -p 'rzx@1218' scp -o StrictHostKeyChecking=no -P 22 /data/minio/data/bac
 sshpass -p {密码} ssh -p {端口} -o StrictHostKeyChecking=no {用户名}@{主机IP} 'rm -rf /tmp/test'
 sshpass -p 'rzx@1218' ssh -p 22 -o StrictHostKeyChecking=no root@10.12.109.112 'mkdir -p /data/backup/' 
 ```
+备份导出sql
+```
+/usr/bin/mysqldump  --single-transaction  --opt -hlocalhost --user=root --password='3GDcn2lUFIRVEsXxljUfpK!kYIy&sOC1' -P3300 --databases tdsms --tables tdsms_logs_clipboard tdsms_logs_email tdsms_logs_file_opt tdsms_logs_file_send tdsms_logs_html tdsms_logs_im_msg tdsms_logs_print tdsms_logs_screen tdsms_logs_search tdsms_logs_user_auth tdsms_terminal_software_log tdsms_terminal_usb_log -w"act_time >= '2021-11-16 18:53:24'" --result-file=/data/mysql/backUpSystemLog_20230217_030000_sql.sql
+```
+
+使用ssh进入容器命令。不能加-it
+```
+docker exec rws-mgt /bin/su -c "mkdir -p /data/backup/"
+```
