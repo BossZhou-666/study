@@ -104,3 +104,9 @@ sshpass -p 'rzx@1218' ssh -p 22 -o StrictHostKeyChecking=no root@10.12.109.112 '
 ```
 docker exec rws-mgt /bin/su -c "mkdir -p /data/backup/"
 ```
+
+```
+nsenter -m -t 1
+```
+nsenter命令删除目录，千万不能带* 
+比如：rm -rf /data/backup/* 需要写成 rm -rf /data/backup/  带*在容器里面不会去执行的
